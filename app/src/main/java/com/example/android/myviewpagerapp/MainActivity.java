@@ -9,10 +9,7 @@ import android.util.Log;
 
 //Implementing the interface OnTabSelectedListener to our MainActivity
 //This interface would help in swiping views
-public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSelectedListener{
-
-    // tag constant for log purposes
-    private static final String TAG = "IAMTHEWOLF";
+public class MainActivity extends AppCompatActivity{
 
     //This is our tablayout
     private TabLayout tabLayout;
@@ -33,10 +30,11 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
 
         //Adding the tabs using addTab() method
-        tabLayout.addTab(tabLayout.newTab().setText("Tab1"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab2"));
-        tabLayout.addTab(tabLayout.newTab().setText("Tab3"));
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
 
         //Initializing viewPager
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -47,23 +45,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         //Adding adapter to pager
         viewPager.setAdapter(adapter);
 
-        //Adding onTabSelectedListener to swipe views
-        tabLayout.setOnTabSelectedListener(this);
-    }
-
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        viewPager.setCurrentItem(tab.getPosition());
-        Log.i(TAG,"you swiped right!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
 }

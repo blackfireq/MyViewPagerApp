@@ -13,11 +13,14 @@ public class Pager extends FragmentStatePagerAdapter {
     //integer to count number of tabs
     int tabCount;
 
+    private String tabTitles[] = new String[] { "Tab1", "Tab2", "Tab3" };
+
     //Constructor to the class
     public Pager(FragmentManager fm, int tabCount) {
         super(fm);
         //Initializing tab count
         this.tabCount= tabCount;
+
     }
 
     //Overriding method getItem
@@ -43,5 +46,11 @@ public class Pager extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return tabCount;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        // Generate title based on item position
+        return tabTitles[position];
     }
 }
